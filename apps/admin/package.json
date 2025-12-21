@@ -1,0 +1,31 @@
+{
+  "name": "@repo/admin",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/main.tsx",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .ts,.tsx",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "@tanstack/react-query": "^5.0.0",
+    "@tanstack/react-router": "^1.0.0",
+    "zod": "^3.0.0",
+    "@repo/ui": "file:../../packages/ui",
+    "@repo/utils": "file:../../packages/utils"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "typescript": "^5.9.3",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.0.0",
+    "@testing-library/react": "16.3.1",
+    "@testing-library/jest-dom": "^6.0.0",
+    "vitest": "^1.0.0"
+  }
+}
