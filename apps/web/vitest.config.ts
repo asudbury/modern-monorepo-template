@@ -8,5 +8,6 @@ export default defineConfig({
     coverage: {
       reporter: ['text', 'html'],
     },
+    exclude: ['node_modules', 'e2e/**'],
   },
 });

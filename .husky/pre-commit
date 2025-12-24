@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+pnpm prettier --write . && pnpm run lint && pnpm test
