@@ -1,5 +1,13 @@
 # Modern Monorepo Template
 
+---
+
+## 📝 Commit Message Help
+
+This project enforces [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). If your commit is rejected, see:
+
+👉 Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+
 A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, powered by pnpm, Turborepo, and Lerna. Strict on accessibility, performance, and code quality.
 
 ---
