@@ -11,7 +11,6 @@ import { RequireAuth } from './shared/RequireAuth';
 
 const queryClient = new QueryClient();
 
-
 const rootRoute = createRootRoute({
   component: () => (
     <RequireAuth>
@@ -47,5 +46,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
     </QueryClientProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

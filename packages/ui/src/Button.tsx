@@ -5,7 +5,16 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 export const Button: React.FC<ButtonProps> = ({ children, ...props }) => (
-  <button {...props} style={{ padding: '0.5rem 1rem', borderRadius: 4, border: '1px solid #ccc', background: '#fff', cursor: 'pointer' }}>
+  <button
+    {...props}
+    style={{
+      padding: '0.5rem 1rem',
+      borderRadius: 4,
+      border: '1px solid #ccc',
+      background: '#fff',
+      cursor: 'pointer',
+    }}
+  >
     {children}
   </button>
 );
