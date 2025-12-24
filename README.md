@@ -1,6 +1,5 @@
 # Modern Monorepo Template
 
-
 ## 📚 DeepWiki Project Knowledge Base
 
 > **Explore the full documentation, architecture, and deep technical notes for this project on DeepWiki:**
