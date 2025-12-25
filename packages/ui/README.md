@@ -13,7 +13,18 @@ A shared React component library providing reusable, accessible UI components fo
 ## Components
 
 ### Button
-A versatile button component with multiple variants.
+A simple, accessible button component that extends standard HTML button attributes.
+
+**Props:**
+- All standard HTML button attributes (`onClick`, `disabled`, `type`, etc.)
+- `children`: React.ReactNode - Button content
+
+**Example:**
+```typescript
+<Button onClick={handleClick} disabled={isLoading}>
+  Submit
+</Button>
+```
 
 ### Layout
 Layout components for consistent page structure.
@@ -44,7 +55,7 @@ import { Button, Layout } from '@repo/ui';
 function MyComponent() {
   return (
     <Layout>
-      <Button variant="primary" onClick={() => console.log('Clicked!')}>
+      <Button onClick={() => console.log('Clicked!')}>
         Click Me
       </Button>
     </Layout>
