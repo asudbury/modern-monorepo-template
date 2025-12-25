@@ -149,6 +149,7 @@ chore(deps): update react to version 19.1.0
 ### Scope
 
 Scope should indicate which part of the codebase is affected:
+
 - `ui`, `utils`, `config` for packages
 - `web`, `admin`, `api` for apps
 - `ci`, `deps`, `build` for infrastructure
@@ -176,6 +177,7 @@ Scope should indicate which part of the codebase is affected:
 ### Pull Request Title
 
 Follow the same format as commit messages:
+
 ```
 feat(ui): add new Button component
 ```
@@ -183,6 +185,7 @@ feat(ui): add new Button component
 ### Pull Request Description
 
 Include:
+
 - **What**: What changes are being made
 - **Why**: Why these changes are necessary
 - **How**: How the changes work
@@ -263,6 +266,7 @@ modern-monorepo-template/
 ## Questions?
 
 If you have questions or need help:
+
 - Check existing [Issues](https://github.com/asudbury/modern-monorepo-template/issues)
 - Open a new issue with your question
 - Review the [DeepWiki documentation](https://deepwiki.com/asudbury/modern-monorepo-template)

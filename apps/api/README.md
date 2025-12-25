@@ -57,6 +57,7 @@ NODE_ENV=development
 ## Adding New Endpoints
 
 1. Define your route in `src/index.ts`:
+
 ```typescript
 app.get('/api/users', (req, res) => {
   res.json({ users: [] });
@@ -64,6 +65,7 @@ app.get('/api/users', (req, res) => {
 ```
 
 2. Add validation using Zod:
+
 ```typescript
 import { z } from 'zod';
 
@@ -83,4 +85,3 @@ const userSchema = z.object({
 - ts-node-dev for development
 - Zod for validation
 - Vitest for testing
-

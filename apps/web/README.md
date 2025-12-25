@@ -66,4 +66,3 @@ VITE_API_URL=http://localhost:3000
 - TanStack Router
 - TanStack Query
 - Zod for validation
-

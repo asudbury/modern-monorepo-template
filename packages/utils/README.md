@@ -12,9 +12,11 @@ A shared utilities library providing common helper functions and constants used 
 ## Utilities
 
 ### String Utilities
+
 Helper functions for string manipulation.
 
 ### Math Utilities
+
 Common mathematical operations and calculations.
 
 ## Development
@@ -38,20 +40,23 @@ Import utilities in your app:
 import { capitalize, sum } from '@repo/utils';
 
 const name = capitalize('john'); // 'John'
-const total = sum(5, 10);        // 15
+const total = sum(5, 10); // 15
 ```
 
 ## Available Utilities
 
 ### String Functions
+
 - `capitalize(str: string): string` - Capitalize the first letter of a string
 
 ### Math Functions
+
 - `sum(a: number, b: number): number` - Add two numbers together
 
 ## Adding New Utilities
 
 1. Create or edit a utility file in `src/`:
+
 ```typescript
 // src/array.ts
 export function unique<T>(array: T[]): T[] {
@@ -59,19 +64,20 @@ export function unique<T>(array: T[]): T[] {
 }
 
 export function chunk<T>(array: T[], size: number): T[][] {
-  return Array.from(
-    { length: Math.ceil(array.length / size) },
-    (_, i) => array.slice(i * size, i * size + size)
+  return Array.from({ length: Math.ceil(array.length / size) }, (_, i) =>
+    array.slice(i * size, i * size + size),
   );
 }
 ```
 
 2. Export from `src/index.ts`:
+
 ```typescript
 export { unique, chunk } from './array';
 ```
 
 3. Add tests in `src/array.test.ts`:
+
 ```typescript
 import { describe, it, expect } from 'vitest';
 import { unique, chunk } from './array';
@@ -88,6 +94,7 @@ describe('array utilities', () => {
 ```
 
 4. Rebuild the package:
+
 ```bash
 pnpm --filter @repo/utils build
 ```
@@ -117,4 +124,3 @@ export function formatDate(date: Date): string {
 
 - TypeScript 5.9.x
 - Vitest for testing
-

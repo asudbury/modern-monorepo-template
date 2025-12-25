@@ -108,42 +108,50 @@ Before you begin, ensure you have the following installed:
 ## Quick Start
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/asudbury/modern-monorepo-template.git
    cd modern-monorepo-template
    ```
 
 2. **Install dependencies:**
+
    ```bash
    pnpm install
    ```
 
 3. **Set up environment variables (optional):**
+
    ```bash
    cp .env.example .env
    # Edit .env with your specific configuration
    ```
 
 4. **Run all apps in dev mode:**
+
    ```bash
    pnpm run dev
    ```
+
    This will start:
    - Web app: http://localhost:5173
    - Admin app: http://localhost:5174
    - API: http://localhost:3000
 
 5. **Build all apps/packages:**
+
    ```bash
    pnpm run build
    ```
 
 6. **Lint all code:**
+
    ```bash
    pnpm run lint
    ```
 
 7. **Run all tests:**
+
    ```bash
    pnpm test
    ```
@@ -200,6 +208,7 @@ Before you begin, ensure you have the following installed:
 **Issue**: Build fails with "Cannot find module" errors
 
 **Solution**: Ensure all dependencies are installed and packages are built in the correct order:
+
 ```bash
 # Clean and rebuild
 rm -rf node_modules apps/*/node_modules packages/*/node_modules
@@ -213,6 +222,7 @@ pnpm run build
 **Issue**: Commit is rejected by commitlint
 
 **Solution**: This project enforces [Conventional Commits](https://www.conventionalcommits.org/). Use one of these prefixes:
+
 - `feat:` for new features
 - `fix:` for bug fixes
 - `docs:` for documentation changes
@@ -227,7 +237,8 @@ Example: `feat: add user authentication`
 
 **Issue**: Port already in use or dev server fails to start
 
-**Solution**: 
+**Solution**:
+
 1. Check if ports 3000, 5173, 5174 are available
 2. Kill any processes using these ports:
    ```bash
@@ -249,6 +260,7 @@ Example: `feat: add user authentication`
 **Issue**: CI fails or unexpected behavior with different pnpm versions
 
 **Solution**: Ensure you're using pnpm 10.5.2:
+
 ```bash
 npm install -g pnpm@10.5.2
 pnpm --version

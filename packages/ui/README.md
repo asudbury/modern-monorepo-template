@@ -13,13 +13,16 @@ A shared React component library providing reusable, accessible UI components fo
 ## Components
 
 ### Button
+
 A simple, accessible button component that extends standard HTML button attributes.
 
 **Props:**
+
 - All standard HTML button attributes (`onClick`, `disabled`, `type`, etc.)
 - `children`: React.ReactNode - Button content
 
 **Example:**
+
 ```typescript
 <Button onClick={handleClick} disabled={isLoading}>
   Submit
@@ -27,9 +30,11 @@ A simple, accessible button component that extends standard HTML button attribut
 ```
 
 ### Layout
+
 Layout components for consistent page structure.
 
 ### Form
+
 Form components including inputs, checkboxes, and more.
 
 ## Development
@@ -66,6 +71,7 @@ function MyComponent() {
 ## Adding New Components
 
 1. Create a new component file in `src/`:
+
 ```typescript
 // src/Card.tsx
 import React from 'react';
@@ -86,12 +92,14 @@ export const Card: React.FC<CardProps> = ({ title, children }) => {
 ```
 
 2. Export it from `src/index.ts`:
+
 ```typescript
 export { Card } from './Card';
 export type { CardProps } from './Card';
 ```
 
 3. Add tests in `src/Card.test.tsx`:
+
 ```typescript
 import { render, screen } from '@testing-library/react';
 import { Card } from './Card';
@@ -106,6 +114,7 @@ describe('Card', () => {
 ```
 
 4. Rebuild the package:
+
 ```bash
 pnpm --filter @repo/ui build
 ```
@@ -113,6 +122,7 @@ pnpm --filter @repo/ui build
 ## Testing
 
 All components should:
+
 - Have unit tests
 - Be accessible (test with screen readers)
 - Support keyboard navigation
@@ -124,4 +134,3 @@ All components should:
 - TypeScript 5.9.x
 - Vitest
 - React Testing Library
-
