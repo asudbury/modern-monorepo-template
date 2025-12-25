@@ -1,5 +1,7 @@
 # Modern Monorepo Template
 
+A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, powered by pnpm, Turborepo, and Lerna. Strict on accessibility, performance, and code quality.
+
 ## 📚 DeepWiki Project Knowledge Base
 
 > **Explore the full documentation, architecture, and deep technical notes for this project on DeepWiki:**
