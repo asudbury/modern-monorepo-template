@@ -11,8 +11,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@repo/ui": "file:../../packages/ui",
-    "@repo/utils": "file:../../packages/utils",
+    "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*",
     "@tanstack/react-query": "^5.0.0",
     "@tanstack/react-router": "^1.0.0",
     "react": "19.1.0",
