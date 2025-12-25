@@ -12,21 +12,27 @@ Shared configuration files for ESLint, Prettier, and TypeScript used across the 
 ## Files
 
 ### eslint.config.js
+
 ESLint configuration with:
+
 - TypeScript support
 - React rules
 - Accessibility rules
 - Consistent code quality standards
 
 ### prettier.config.js
+
 Prettier configuration with:
+
 - Consistent formatting rules
 - Single quotes
 - 2-space indentation
 - Trailing commas
 
 ### tsconfig.base.json
+
 Base TypeScript configuration with:
+
 - Strict mode enabled
 - Modern ES target
 - Path aliases support
@@ -86,6 +92,7 @@ To change configuration for all packages:
 
 1. Edit the relevant file in this package
 2. Rebuild packages that depend on the config:
+
 ```bash
 pnpm run build
 ```
@@ -123,10 +130,12 @@ pnpm run build
 ### VS Code
 
 Install extensions:
+
 - ESLint
 - Prettier - Code formatter
 
 Add to `.vscode/settings.json`:
+
 ```json
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -142,4 +151,3 @@ Add to `.vscode/settings.json`:
 - ESLint 8.x
 - Prettier 3.x
 - TypeScript 5.9.x
-

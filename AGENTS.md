@@ -33,6 +33,7 @@ The repository includes a GitHub Copilot Workspace agent workflow for automated 
 ### Usage
 
 The Copilot agent is automatically triggered on pull requests and can be invoked with comments:
+
 - `@copilot fix the build errors`
 - `@copilot add tests for this component`
 - `@copilot update the documentation`
@@ -43,12 +44,14 @@ The Copilot agent is automatically triggered on pull requests and can be invoked
 ### Husky Git Hooks
 
 Pre-commit and commit-msg hooks ensure code quality before commits:
+
 - **Pre-commit**: Runs linting and formatting
 - **Commit-msg**: Validates commit messages follow Conventional Commits
 
 ### GitHub Actions CI
 
 Automated CI workflow runs on all pull requests:
+
 - Linting with ESLint
 - Type checking with TypeScript
 - Unit tests with Vitest
@@ -63,6 +66,7 @@ See [.github/workflows/ci.yml](.github/workflows/ci.yml) for the complete CI con
 ### Dependabot
 
 Automated dependency updates with security checks:
+
 - Daily scans for security vulnerabilities
 - Weekly dependency updates
 - Automatic PR creation for updates
@@ -72,6 +76,7 @@ Automated dependency updates with security checks:
 ### ESLint
 
 Static code analysis with:
+
 - TypeScript support
 - React best practices
 - Accessibility checks (jsx-a11y)
@@ -80,12 +85,14 @@ Static code analysis with:
 ### Prettier
 
 Automatic code formatting on save and pre-commit:
+
 - Consistent code style across the monorepo
 - Integration with ESLint
 
 ### Knip
 
 Unused code and dependency detection:
+
 - Finds unused files
 - Identifies unused exports
 - Detects unused dependencies
@@ -94,6 +101,7 @@ Unused code and dependency detection:
 ## TypeScript Language Server
 
 Full TypeScript language server support provides:
+
 - Intelligent autocomplete
 - Real-time type checking
 - Refactoring suggestions
@@ -118,6 +126,7 @@ Full TypeScript language server support provides:
 ## Contributing
 
 When contributing to this repository:
+
 - Let Copilot assist with boilerplate code
 - Use the Copilot agent for code reviews
 - Ensure all AI-generated code passes tests and linting

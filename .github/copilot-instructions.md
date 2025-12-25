@@ -5,6 +5,7 @@ This file provides context and guidelines for GitHub Copilot when working in thi
 ## Project Overview
 
 This is a modern monorepo template built with:
+
 - **pnpm workspaces** for package management
 - **Turborepo** for build orchestration
 - **Lerna** for independent versioning
@@ -197,6 +198,7 @@ Follow **Conventional Commits** format:
 **Scopes**: ui, utils, config, web, admin, api, ci, deps
 
 **Examples**:
+
 - `feat(ui): add Button variant prop`
 - `fix(api): resolve CORS issue`
 - `docs: update README quick start`
@@ -316,6 +318,7 @@ pnpm run knip                   # Check unused code
 ## Helpful Reminders
 
 When writing code for this repository:
+
 - Start with TypeScript interfaces
 - Add accessibility attributes
 - Write the test first (TDD when possible)
