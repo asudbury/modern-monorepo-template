@@ -91,29 +91,62 @@ modern-monorepo-template/
 
 ---
 
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Node.js**: Version 20 or higher ([Download](https://nodejs.org/))
+- **pnpm**: Version 10.5.2 ([Installation guide](https://pnpm.io/installation))
+  ```bash
+  npm install -g pnpm@10.5.2
+  ```
+
+---
+
 ## Quick Start
 
-1. **Install dependencies:**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/asudbury/modern-monorepo-template.git
+   cd modern-monorepo-template
+   ```
+
+2. **Install dependencies:**
    ```bash
    pnpm install
    ```
-2. **Run all apps in dev mode:**
+
+3. **Set up environment variables (optional):**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your specific configuration
+   ```
+
+4. **Run all apps in dev mode:**
    ```bash
    pnpm run dev
    ```
-3. **Build all apps/packages:**
+   This will start:
+   - Web app: http://localhost:5173
+   - Admin app: http://localhost:5174
+   - API: http://localhost:3000
+
+5. **Build all apps/packages:**
    ```bash
    pnpm run build
    ```
-4. **Lint all code:**
+
+6. **Lint all code:**
    ```bash
    pnpm run lint
    ```
-5. **Run all tests:**
+
+7. **Run all tests:**
    ```bash
    pnpm test
    ```
-6. **Analyze for unused code/deps:**
+
+8. **Analyze for unused code/deps:**
    ```bash
    pnpm run knip
    ```
@@ -158,6 +191,69 @@ modern-monorepo-template/
 
 ---
 
+## Troubleshooting
+
+### Build Fails
+
+**Issue**: Build fails with "Cannot find module" errors
+
+**Solution**: Ensure all dependencies are installed and packages are built in the correct order:
+```bash
+# Clean and rebuild
+rm -rf node_modules apps/*/node_modules packages/*/node_modules
+rm -rf apps/*/dist packages/*/dist .turbo
+pnpm install
+pnpm run build
+```
+
+### Commit Rejected
+
+**Issue**: Commit is rejected by commitlint
+
+**Solution**: This project enforces [Conventional Commits](https://www.conventionalcommits.org/). Use one of these prefixes:
+- `feat:` for new features
+- `fix:` for bug fixes
+- `docs:` for documentation changes
+- `chore:` for maintenance tasks
+- `refactor:` for code refactoring
+- `test:` for test changes
+- `style:` for formatting changes
+
+Example: `feat: add user authentication`
+
+### Dev Server Won't Start
+
+**Issue**: Port already in use or dev server fails to start
+
+**Solution**: 
+1. Check if ports 3000, 5173, 5174 are available
+2. Kill any processes using these ports:
+   ```bash
+   # On macOS/Linux
+   lsof -ti:3000,5173,5174 | xargs kill -9
+   # On Windows
+   netstat -ano | findstr :3000
+   taskkill /PID <PID> /F
+   ```
+
+### TypeScript Errors in IDE
+
+**Issue**: IDE shows TypeScript errors despite successful build
+
+**Solution**: Restart your TypeScript server or IDE, and ensure you're using the workspace TypeScript version.
+
+### pnpm Version Mismatch
+
+**Issue**: CI fails or unexpected behavior with different pnpm versions
+
+**Solution**: Ensure you're using pnpm 10.5.2:
+```bash
+npm install -g pnpm@10.5.2
+pnpm --version
+```
+
+---
+
 ## Resources
 
 ### Core Framework & Styling
@@ -192,6 +288,18 @@ modern-monorepo-template/
 - [GitHub Pages](https://docs.github.com/en/pages)
 - [SonarCloud](https://sonarcloud.io/)
 - [TypeDoc](https://typedoc.org/)
+
+---
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- Code of Conduct
+- Development workflow
+- Coding standards
+- Commit guidelines
+- Pull request process
 
 ---
 
