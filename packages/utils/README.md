@@ -35,21 +35,19 @@ pnpm --filter @repo/utils test -- --watch
 Import utilities in your app:
 
 ```typescript
-import { capitalize, formatCurrency } from '@repo/utils';
+import { capitalize, sum } from '@repo/utils';
 
-const name = capitalize('john doe');  // 'John Doe'
-const price = formatCurrency(1234.5); // '$1,234.50'
+const name = capitalize('john'); // 'John'
+const total = sum(5, 10);        // 15
 ```
 
 ## Available Utilities
 
 ### String Functions
-- `capitalize(str: string): string` - Capitalize the first letter
-- `truncate(str: string, length: number): string` - Truncate string to length
+- `capitalize(str: string): string` - Capitalize the first letter of a string
 
 ### Math Functions
-- `clamp(value: number, min: number, max: number): number` - Clamp value between min and max
-- `roundToDecimal(value: number, decimals: number): number` - Round to specified decimals
+- `sum(a: number, b: number): number` - Add two numbers together
 
 ## Adding New Utilities
 
