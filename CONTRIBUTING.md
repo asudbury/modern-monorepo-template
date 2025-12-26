@@ -43,9 +43,11 @@ This project follows a code of conduct to ensure a welcoming environment for all
    # macOS
    brew install gitleaks
    
-   # Linux
+   # Linux (user-local installation - recommended)
+   mkdir -p ~/.local/bin
    curl -sSfL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_linux_x64.tar.gz | tar -xz
-   sudo mv gitleaks /usr/local/bin/
+   mv gitleaks ~/.local/bin/
+   export PATH="$HOME/.local/bin:$PATH"
    
    # Windows - download from https://github.com/gitleaks/gitleaks/releases
    ```
