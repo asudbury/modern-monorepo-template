@@ -24,6 +24,7 @@ A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, 
 - 🦾 [Axe-core](https://github.com/dequelabs/axe-core) automated accessibility checks
 - 📝 [Commitlint](https://commitlint.js.org/#/) enforcing conventional commit messages
 - 🛡️ Global Error Boundary with custom fallback UI and reload/reset support
+- 🔐 [Gitleaks](https://github.com/gitleaks/gitleaks) secret scanning in pre-commit and CI
 - 🔒 [ESLint](https://eslint.org/) static analysis (shared config)
 - 🪝 [Husky](https://typicode.github.io/husky/) pre-commit + commit-msg hooks
 - 🧹 [Knip](https://knip.dev/) unused code & dependency analysis (non-blocking, see CI)
@@ -191,6 +192,9 @@ Before you begin, ensure you have the following installed:
 - `pnpm run lint:fix` – fix ESLint issues
 - `pnpm run prettier` – format code with Prettier
 - `pnpm run knip` – analyze for unused files, exports, and dependencies
+- `pnpm run secrets:scan` – scan entire repository for secrets
+- `pnpm run secrets:scan-staged` – scan only staged files for secrets
+- `pnpm run secrets:baseline` – generate a baseline report of detected secrets
 - Conventional commits enforced via commitlint on `git commit`
 
 ### Testing
@@ -198,6 +202,118 @@ Before you begin, ensure you have the following installed:
 - `pnpm test` – run all tests
 - `pnpm run test:unit` – run unit tests
 - `pnpm run test:e2e` – run E2E tests with Playwright
+
+---
+
+## Security: Secret Scanning
+
+This project uses [Gitleaks](https://github.com/gitleaks/gitleaks) to prevent secrets (API keys, passwords, tokens) from being committed to the repository.
+
+### How It Works
+
+Secret scanning runs in two places:
+
+1. **Pre-commit Hook**: Automatically scans staged files before each commit
+2. **CI Pipeline**: Scans the entire repository on every push and pull request
+
+### Installation
+
+Gitleaks needs to be installed on your local machine for the pre-commit hook to work.
+
+#### macOS
+
+```bash
+brew install gitleaks
+```
+
+#### Linux
+
+```bash
+# Download and install the latest version
+curl -sSfL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_linux_x64.tar.gz | tar -xz
+sudo mv gitleaks /usr/local/bin/
+```
+
+#### Windows
+
+Download the latest Windows release from the [Gitleaks releases page](https://github.com/gitleaks/gitleaks/releases) and add it to your PATH.
+
+### Usage
+
+#### Scan Entire Repository
+
+```bash
+pnpm run secrets:scan
+```
+
+#### Scan Only Staged Files
+
+```bash
+pnpm run secrets:scan-staged
+```
+
+#### Generate Baseline Report
+
+```bash
+pnpm run secrets:baseline
+```
+
+This creates a JSON report at `gitleaks-baseline.json` with all detected secrets.
+
+### Handling False Positives
+
+If Gitleaks detects something that isn't actually a secret:
+
+1. **Run a scan to get the fingerprint**:
+
+   ```bash
+   gitleaks detect --report-format json --report-path gitleaks-report.json
+   ```
+
+2. **Open the report** and find the `Fingerprint` field for the false positive
+
+3. **Add the fingerprint to `.gitleaksignore`**:
+
+   ```
+   <fingerprint>:<file>:<line>
+   ```
+
+   Example:
+
+   ```
+   a1b2c3d4e5f6g7h8:apps/web/src/config.ts:42
+   ```
+
+4. **Commit your changes** – the false positive will now be ignored
+
+### Configuration
+
+Secret scanning is configured via `.gitleaks.toml`:
+
+- **Custom rules**: Add organization-specific secret patterns
+- **Allowlist patterns**: Regex patterns for known false positives
+- **Ignored paths**: Directories and files to skip (node_modules, dist, etc.)
+- **Stop words**: Words that indicate test/example data
+
+### Bypassing Secret Scanning (Not Recommended)
+
+In rare cases where you need to bypass the pre-commit check:
+
+```bash
+git commit --no-verify
+```
+
+⚠️ **Warning**: This skips all pre-commit checks, including linting and testing. The CI pipeline will still catch secrets.
+
+### Best Practices
+
+- ✅ Use environment variables for all sensitive data
+- ✅ Keep real secrets in `.env` (which is gitignored)
+- ✅ Use `.env.example` with placeholder values
+- ✅ Review the `.gitleaks.toml` configuration periodically
+- ✅ Keep Gitleaks updated: `brew upgrade gitleaks` (macOS)
+- ❌ Never commit real API keys, passwords, or tokens
+- ❌ Don't use `--no-verify` to bypass checks
 
 ---
 
@@ -266,6 +382,28 @@ npm install -g pnpm@10.5.2
 pnpm --version
 ```
 
+### Secret Scanning Failures
+
+**Issue**: Pre-commit hook fails with "Gitleaks not installed"
+
+**Solution**: Install Gitleaks following the instructions in the [Security: Secret Scanning](#security-secret-scanning) section.
+
+**Issue**: False positive detected as a secret
+
+**Solution**: Add the fingerprint to `.gitleaksignore`:
+
+1. Run `gitleaks detect --report-format json --report-path gitleaks-report.json`
+2. Find the fingerprint in the report
+3. Add it to `.gitleaksignore` in the format: `<fingerprint>:<file>:<line>`
+
+**Issue**: Pre-commit hook is too slow
+
+**Solution**: The secret scanning only checks staged files, which should be fast. If it's still slow:
+
+1. Ensure you're running the latest version of Gitleaks
+2. Check if you have a large number of staged files
+3. Consider unstaging files you don't need to commit yet
+
 ---
 
 ## Resources
@@ -293,6 +431,7 @@ pnpm --version
 
 - [Commitlint](https://commitlint.js.org/#/)
 - [ESLint](https://eslint.org/)
+- [Gitleaks](https://github.com/gitleaks/gitleaks)
 - [Husky](https://typicode.github.io/husky/)
 - [Knip](https://knip.dev/)
 - [Prettier](https://prettier.io/)

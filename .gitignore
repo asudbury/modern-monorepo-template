@@ -28,6 +28,10 @@ test-results/
 .env.*
 !.env.example
 
+# Secret scanning reports
+gitleaks-report.json
+gitleaks-baseline.json
+
 # IDE/editor
 .vscode/*
 !.vscode/extensions.json

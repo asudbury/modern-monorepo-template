@@ -1,0 +1,60 @@
+# Gitleaks configuration file
+# https://github.com/gitleaks/gitleaks
+
+title = "Modern Monorepo Template - Secret Scanning Configuration"
+
+# Extend the base configuration with custom rules
+[extend]
+# Use the default Gitleaks ruleset as a base
+useDefault = true
+
+[allowlist]
+description = "Global allowlist for known false positives"
+
+# Allowlist patterns that commonly trigger false positives
+regexes = [
+  # Example API URLs that aren't real secrets
+  '''(https?://)?example\.com/[a-zA-Z0-9/\-_]+''',
+  # Test/mock API keys
+  '''(test|mock|fake|example)[-_]?(api)?[-_]?key''',
+  # Placeholder values
+  '''your[-_]?(api)?[-_]?(key|secret|token)[-_]?here''',
+  # Common variable names that look like secrets but aren't
+  '''const \w+Key = ['"]key['"]''',
+]
+
+# Paths to ignore globally
+paths = [
+  # Dependencies
+  '''node_modules/''',
+  '''pnpm-lock\.yaml''',
+  '''package-lock\.json''',
+  '''yarn\.lock''',
+  
+  # Build outputs
+  '''dist/''',
+  '''build/''',
+  '''\.turbo/''',
+  '''coverage/''',
+  
+  # Documentation and examples
+  '''docs-html/''',
+  '''playwright-report/''',
+  '''test-results/''',
+  
+  # Git directory
+  '''\.git/''',
+  
+  # Environment example files (these should contain placeholders)
+  '''\.env\.example''',
+]
+
+# Stop words to ignore in commits
+stopwords = [
+  "example",
+  "test",
+  "placeholder",
+  "your-key-here",
+  "fake",
+  "mock",
+]

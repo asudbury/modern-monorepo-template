@@ -12,6 +12,9 @@
     "lint": "turbo run lint",
     "test": "turbo run test -- --run",
     "knip": "knip",
+    "secrets:scan": "gitleaks detect --verbose --config .gitleaks.toml",
+    "secrets:scan-staged": "gitleaks protect --staged --verbose --config .gitleaks.toml",
+    "secrets:baseline": "gitleaks detect --report-format json --report-path gitleaks-baseline.json --config .gitleaks.toml",
     "prepare": "husky install"
   },
   "devDependencies": {

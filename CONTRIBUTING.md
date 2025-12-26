@@ -24,6 +24,7 @@ This project follows a code of conduct to ensure a welcoming environment for all
 - Node.js 20+
 - pnpm 10.5.2
 - Git
+- Gitleaks (for secret scanning)
 
 ### Setup
 
@@ -37,7 +38,18 @@ This project follows a code of conduct to ensure a welcoming environment for all
    ```bash
    pnpm install
    ```
-4. Create a branch for your changes:
+4. Install Gitleaks for secret scanning:
+   ```bash
+   # macOS
+   brew install gitleaks
+   
+   # Linux
+   curl -sSfL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_linux_x64.tar.gz | tar -xz
+   sudo mv gitleaks /usr/local/bin/
+   
+   # Windows - download from https://github.com/gitleaks/gitleaks/releases
+   ```
+5. Create a branch for your changes:
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -68,7 +80,8 @@ pnpm --filter @repo/ui build
 2. Write or update tests for your changes
 3. Ensure all tests pass: `pnpm test`
 4. Lint your code: `pnpm run lint`
-5. Run the build to verify: `pnpm run build`
+5. Run secret scanning: `pnpm run secrets:scan-staged`
+6. Run the build to verify: `pnpm run build`
 
 ### Working with Packages
 
@@ -110,6 +123,16 @@ When making changes to shared packages (`ui`, `utils`, `config`), remember that 
 - ESLint is configured for the project
 - Fix linting errors before committing: `pnpm run lint:fix`
 - All code must pass linting checks
+
+### Security
+
+- **Never commit secrets** (API keys, passwords, tokens)
+- Use environment variables for sensitive data
+- Secret scanning runs automatically on pre-commit and in CI
+- If you need to bypass secret scanning for a legitimate reason:
+  1. Generate a fingerprint: `gitleaks detect --report-format json --report-path gitleaks-report.json`
+  2. Add the fingerprint to `.gitleaksignore`
+  3. Document why it's a false positive in a comment
 
 ## Commit Guidelines
 
@@ -163,7 +186,8 @@ Scope should indicate which part of the codebase is affected:
 3. Ensure all tests pass: `pnpm test`
 4. Ensure the build succeeds: `pnpm run build`
 5. Run linting: `pnpm run lint`
-6. Check for unused code: `pnpm run knip`
+6. Run secret scanning: `pnpm run secrets:scan-staged`
+7. Check for unused code: `pnpm run knip`
 
 ### Submitting a Pull Request
 
