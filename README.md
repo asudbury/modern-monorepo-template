@@ -16,6 +16,10 @@ A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, 
 
 ---
 
+### Other templates
+- There is a react version available here [modern-react-template](https://github.com/asudbury/modern-react-template)
+- There is a react lite version available here [modern-react-template-lite](https://github.com/asudbury/modern-react-template-lite)
+
 ## Features
 
 ### Core Features (Always Enabled)
