@@ -51,6 +51,9 @@ This project follows a code of conduct to ensure a welcoming environment for all
    
    # Windows - download from https://github.com/gitleaks/gitleaks/releases
    ```
+   
+   > **Note**: For additional security, verify checksums from the [releases page](https://github.com/gitleaks/gitleaks/releases).
+
 5. Create a branch for your changes:
    ```bash
    git checkout -b feature/your-feature-name

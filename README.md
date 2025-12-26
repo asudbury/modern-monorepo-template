@@ -242,6 +242,8 @@ curl -sSfL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleak
 sudo mv gitleaks /usr/local/bin/
 ```
 
+> **Security Note**: For enhanced security, consider verifying the download checksum from the [official releases page](https://github.com/gitleaks/gitleaks/releases) before installation.
+
 #### Windows
 
 Download the latest Windows release from the [Gitleaks releases page](https://github.com/gitleaks/gitleaks/releases) and add it to your PATH.
