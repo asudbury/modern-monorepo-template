@@ -1,2 +1,6 @@
 #!/usr/bin/env sh
+# Run secret scanning first
+.husky/pre-commit-secrets
+
+# Then run other checks
 pnpm prettier --write . && pnpm run lint && pnpm test
