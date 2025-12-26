@@ -39,19 +39,20 @@ This project follows a code of conduct to ensure a welcoming environment for all
    pnpm install
    ```
 4. Install Gitleaks for secret scanning:
+
    ```bash
    # macOS
    brew install gitleaks
-   
+
    # Linux (user-local installation - recommended)
    mkdir -p ~/.local/bin
    curl -sSfL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_linux_x64.tar.gz | tar -xz
    mv gitleaks ~/.local/bin/
    export PATH="$HOME/.local/bin:$PATH"
-   
+
    # Windows - download from https://github.com/gitleaks/gitleaks/releases
    ```
-   
+
    > **Note**: For additional security, verify checksums from the [releases page](https://github.com/gitleaks/gitleaks/releases).
 
 5. Create a branch for your changes:
