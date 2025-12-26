@@ -468,6 +468,27 @@ pnpm --version
 - [SonarCloud](https://sonarcloud.io/)
 - [TypeDoc](https://typedoc.org/)
 
+### SonarCloud Setup
+
+This repository includes a sample SonarCloud GitHub Actions workflow and a `sonar-project.properties` file at the repository root. To enable SonarCloud scanning for this repo:
+
+1. Create a project in SonarCloud and note your **Organization key** and **Project key**.
+2. Add the following repository secrets in GitHub Settings → Secrets:
+   - `SONAR_TOKEN` — a SonarCloud token for the user or automation account
+   - `SONAR_ORGANIZATION` — your SonarCloud organization key (optional if configured in `sonar-project.properties`)
+3. Review and, if needed, update `sonar-project.properties` to set `sonar.organization` and `sonar.projectKey`.
+4. The workflow runs on pushes to `main` and on pull requests. It uses `pnpm install` and then invokes the SonarCloud scanner.
+
+Files added by this repo to help enable SonarCloud:
+
+- `.github/workflows/sonarcloud.yml` — GitHub Actions workflow that runs SonarCloud scan
+- `sonar-project.properties` — Sonar project configuration (replace placeholders)
+
+Notes:
+
+- If you generate coverage reports (LCOV), set `sonar.javascript.lcov.reportPaths` in `sonar-project.properties` to the LCOV path.
+- For monorepos you may want to restrict `sonar.sources` or use multiple project keys for per-package analysis.
+
 ---
 
 ## Contributing
