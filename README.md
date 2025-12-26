@@ -229,10 +229,7 @@ brew install gitleaks
 #### Linux
 
 ```bash
-# Option 1: Using package manager (Ubuntu/Debian with snap)
-sudo snap install gitleaks
-
-# Option 2: Download and install to user directory
+# Option 1: Download and install to user directory (recommended)
 mkdir -p ~/.local/bin
 curl -sSfL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_linux_x64.tar.gz | tar -xz
 mv gitleaks ~/.local/bin/
@@ -240,7 +237,7 @@ mv gitleaks ~/.local/bin/
 export PATH="$HOME/.local/bin:$PATH"
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 
-# Option 3: System-wide installation (requires sudo)
+# Option 2: System-wide installation (requires sudo)
 curl -sSfL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_linux_x64.tar.gz | tar -xz
 sudo mv gitleaks /usr/local/bin/
 ```

@@ -11,16 +11,14 @@ useDefault = true
 [allowlist]
 description = "Global allowlist for known false positives"
 
-# Allowlist patterns that commonly trigger false positives
+# Allowlist specific strings that are known false positives
+# Be cautious with regex patterns - overly broad patterns can miss real secrets
+# Prefer using .gitleaksignore for specific false positives with fingerprints
 regexes = [
-  # Example API URLs that aren't real secrets
-  '''(https?://)?example\.com/[a-zA-Z0-9/\-_]+''',
-  # Test/mock API keys
-  '''(test|mock|fake|example)[-_]?(api)?[-_]?key''',
-  # Placeholder values
-  '''your[-_]?(api)?[-_]?(key|secret|token)[-_]?here''',
-  # Common variable names that look like secrets but aren't
-  '''const \w+Key = ['"]key['"]''',
+  # Example domain placeholders
+  '''example\.com''',
+  '''your-domain-here\.com''',
+  '''placeholder\.local''',
 ]
 
 # Paths to ignore globally
