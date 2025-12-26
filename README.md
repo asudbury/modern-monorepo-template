@@ -29,7 +29,7 @@ A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, 
 
 - ♿ Accessibility-first (WCAG 2.2 AA compliant)
 - 🦾 [Axe-core](https://github.com/dequelabs/axe-core) automated accessibility checks
-- 🔍 [CodeQL](https://codeql.github.com/) GitHub Code Scanning (static analysis)
+- 🛡️ [CodeQL](https://codeql.github.com/docs/) for advanced code scanning and security analysis
 - 📝 [Commitlint](https://commitlint.js.org/#/) enforcing conventional commit messages
 - 🛡️ Global Error Boundary with custom fallback UI and reload/reset support
 - 🔐 [Gitleaks](https://github.com/gitleaks/gitleaks) secret scanning in pre-commit and CI
