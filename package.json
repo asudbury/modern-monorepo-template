@@ -15,6 +15,8 @@
     "secrets:scan": "gitleaks detect --config .gitleaks.toml",
     "secrets:scan-staged": "gitleaks protect --staged --config .gitleaks.toml",
     "secrets:baseline": "gitleaks detect --report-format json --report-path gitleaks-baseline.json --config .gitleaks.toml",
+    "docs:md": "typedoc --options typedoc.json",
+    "docs:html": "typedoc --options typedoc.html.json",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -40,7 +42,9 @@
     "prettier": "^3.0.0",
     "turbo": "^2.0.0",
     "typescript": "^5.9.3",
-    "vitest": "^1.0.0"
+    "vitest": "^1.0.0",
+    "typedoc": "^0.25.5",
+    "typedoc-plugin-markdown": "^3.14.0"
   },
   "packageManager": "pnpm@10.5.2"
 }

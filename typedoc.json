@@ -1,0 +1,11 @@
+{
+  "entryPoints": ["./packages/ui/src/index.ts", "./packages/utils/src/index.ts"],
+  "out": "docs",
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/example.*"],
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "readme": "none",
+  "plugin": ["typedoc-plugin-markdown"]
+}
