@@ -65,18 +65,20 @@ A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, 
 ```
 modern-monorepo-template/
 ├── apps/
-│   ├── web/      # Public React app (Vite, React 19)
-│   ├── admin/    # Admin React app (Vite, React 19)
-│   └── api/      # Node.js API (Express, TypeScript)
+│   ├── web/        # Public React app (Vite, React 19)
+│   ├── admin/      # Admin React app (Vite, React 19)
+│   └── api/        # Node.js API (Express, TypeScript)
 ├── packages/
-│   ├── ui/       # Shared React component library
-│   ├── config/   # Shared ESLint, Prettier, and TS configs
-│   └── utils/    # Shared utilities
-├── .github/      # GitHub workflows, Copilot instructions
-├── docs/         # Generated markdown docs (TypeDoc)
-├── docs-html/    # Generated HTML docs (TypeDoc)
-├── playwright/   # E2E tests (Playwright)
-├── .env.example  # Environment variables template
+│   ├── ui/         # Shared React component library
+│   ├── config/     # Shared ESLint, Prettier, and TS configs
+│   └── utils/      # Shared utilities
+├── .github/        # GitHub workflows, Copilot instructions
+├── docs/           # Generated markdown docs (TypeDoc)
+├── docs-html/      # Generated HTML docs (TypeDoc)
+├── playwright/     # E2E tests (Playwright)
+├── .env.example    # Environment variables template
+├── .gitleaks.toml  # Secret scanning config (Gitleaks)
+├── .gitleaksignore # Secret scanning ignore file (Gitleaks)
 ├── .gitignore
 ├── .prettierrc
 ├── commitlint.config.js
