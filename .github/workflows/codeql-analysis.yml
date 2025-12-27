@@ -20,6 +20,12 @@ jobs:
       actions: read
       security-events: write
     steps:
+      # Debug info - can be removed if not required
+      - name: Debug Info
+        uses: ./.github/actions/debug-info
+        with:
+          show-env: 'false'
+
       # Checkout repository: provide source code and Git metadata for analysis.
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,12 +35,6 @@ jobs:
         uses: github/codeql-action/init@v2
         with:
           languages: javascript
-
-      # Debug info
-      - name: Debug Info
-        uses: ./.github/actions/debug-info
-        with:
-          show-env: 'false'
 
       # Autobuild: attempt to build the repository so CodeQL can analyze
       # compiled outputs and dependency graphs. Replace with explicit

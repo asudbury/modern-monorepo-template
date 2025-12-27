@@ -36,12 +36,12 @@ runs:
       shell: bash
       run: |
         echo "--- Versions ---"
-        node -v || echo "node not found"
-        corepack --version || echo "corepack not found"
-        pnpm --version || echo "pnpm not found"
+        echo "Node version:"; node -v || echo "node not found"
+        echo "Corepack version:"; corepack --version || echo "corepack not found"
+        echo "npm version:"; npm --version || echo "npm not found"
         echo "--- Locations ---"
-        command -v node || true
-        command -v pnpm || true
+        echo "Node location:"; command -v node || true
+        echo "npm location:"; command -v npm || true
         echo "--- PATH ---"
         echo "$PATH"
         echo "--- Working Directory ---"

@@ -33,6 +33,12 @@ jobs:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      # Debug info - can be removed if not required
+      - name: Debug Info
+        uses: ./.github/actions/debug-info
+        with:
+          show-env: 'false'
+
       # Checkout: get source and git metadata for analysis.
       - name: Checkout
         uses: actions/checkout@v4
@@ -56,11 +62,6 @@ jobs:
           corepack enable
           corepack prepare pnpm@latest --activate
 
-      # Debug info
-      - name: Debug Info
-        uses: ./.github/actions/debug-info
-        with:
-          show-env: 'false'
 
       # Install dependencies: deterministic install using the lockfile.
       - name: Install dependencies
