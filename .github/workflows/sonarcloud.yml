@@ -44,11 +44,23 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
+      # Ensure pnpm is installed and available on PATH (reliable across runners)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 'latest'
+
       # Enable Corepack and prepare pnpm: ensure consistent pnpm across runners.
       - name: Enable Corepack and prepare pnpm
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
+
+      # Debug info
+      - name: Debug Info
+        uses: ./.github/actions/debug-info
+        with:
+          show-env: 'false'
 
       # Install dependencies: deterministic install using the lockfile.
       - name: Install dependencies

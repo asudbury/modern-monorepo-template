@@ -1,0 +1,54 @@
+## Debug Info action
+
+# Print Node/Corepack/pnpm versions, locations, PATH, working directory and
+# optionally environment variables.
+
+# Usage:
+
+# - name: Debug Info 
+#   uses: ./.github/actions/debug-info
+#   with:
+#     show-env: 'true' # optional, 'true' or 'false'
+
+# Inputs:
+
+# - show-env (optional): 'true' (default) or 'false'. When 'true', the action
+#   prints sorted environment variables.
+
+# Notes:
+
+# - This composite action uses bash and assumes an Ubuntu/macOS runner. On
+#   Windows runners you may need to adjust the shell or use WSL.
+# - Keep the if guard on manual runs to avoid leaking environment variables in
+#   routine CI runs.
+name: Debug Info
+description: Print Node/Corepack/pnpm versions, locations, PATH and environment.
+inputs:
+  show-env:
+    description: 'If true, print environment variables'
+    required: false
+    default: 'true'
+
+runs:
+  using: composite
+  steps:
+    - name: Print versions and locations
+      shell: bash
+      run: |
+        echo "--- Versions ---"
+        node -v || echo "node not found"
+        corepack --version || echo "corepack not found"
+        pnpm --version || echo "pnpm not found"
+        echo "--- Locations ---"
+        command -v node || true
+        command -v pnpm || true
+        echo "--- PATH ---"
+        echo "$PATH"
+        echo "--- Working Directory ---"
+        pwd
+    - name: Print environment
+      if: ${{ inputs.show-env == 'true' }}
+      shell: bash
+      run: |
+        echo "--- Environment ---"
+        env | sort

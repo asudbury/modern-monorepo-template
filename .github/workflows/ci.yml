@@ -53,6 +53,12 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
+      # Debug info
+      - name: Debug Info
+        uses: ./.github/actions/debug-info
+        with:
+          show-env: 'false'
+
       # Cache pnpm store: persist pnpm caches (tarballs, metadata) across runs.
       # Keyed by `pnpm-lock.yaml` so it's invalidated when dependencies change.
       - name: Cache pnpm store
