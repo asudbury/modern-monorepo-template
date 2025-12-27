@@ -1,3 +1,7 @@
+# Overview: CodeQL analysis workflow
+# Purpose: run CodeQL code scanning for the repository on push/PR and weekly.
+# Triggers: `push` and `pull_request` to `main`/`master`, plus a weekly cron run.
+
 name: CodeQL
 
 on:
@@ -16,16 +20,23 @@ jobs:
       actions: read
       security-events: write
     steps:
+      # Checkout repository: provide source code and Git metadata for analysis.
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Initialize CodeQL: configure languages and packs to run.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
           languages: javascript
 
+      # Autobuild: attempt to build the repository so CodeQL can analyze
+      # compiled outputs and dependency graphs. Replace with explicit
+      # build steps if your project requires custom build steps.
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
 
+      # Perform CodeQL Analysis: run the analysis and upload results to
+      # GitHub Code Scanning (Security tab) for review by maintainers.
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2

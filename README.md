@@ -399,6 +399,46 @@ Example: `feat: add user authentication`
 
 **Solution**: Restart your TypeScript server or IDE, and ensure you're using the workspace TypeScript version.
 
+---
+
+## CI/CD Pipeline
+
+The CI pipeline runs on every push and pull request:
+
+1. **Lint** - ESLint checks
+2. **Format** - Prettier checks
+3. **Test** - Unit tests with Vitest
+4. **Build** - Production build
+5. **E2E** - Playwright tests with Axe accessibility scans
+
+### CI cache notes
+
+This repository's GitHub Actions workflows cache npm and build artifacts to
+speed CI runs. Common ways to inspect and control caches:
+
+- Inspect Actions job logs for cache messages like `Cache restored from key:`
+   (cache hit) or `Cache not found for input key:` (cache miss).
+- To force-refresh caches, update `package-lock.json` (recommended) so
+   lockfile-based cache keys change, or temporarily change the workflow
+   cache key (not recommended long-term).
+- Example cache keys used in workflows:
+   - npm cache: `${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}`
+   - Vite cache: `${{ runner.os }}-vite-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/vite.config.ts') }}`
+
+If you want help verifying a cache hit/miss on a recent Actions run, tell me
+which run and I can point to the relevant log lines.
+
+## Pre-commit Hooks
+
+Husky runs the following checks on every commit:
+
+1. Format code with Prettier
+2. Run unit tests
+3. Lint with ESLint
+4. Build the project
+
+If any check fails, the commit is blocked.
+
 ### pnpm Version Mismatch
 
 **Issue**: CI fails or unexpected behavior with different pnpm versions

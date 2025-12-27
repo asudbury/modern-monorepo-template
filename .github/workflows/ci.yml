@@ -1,3 +1,18 @@
+# CI workflow: runs repository checks on pushes and PRs to main/master.
+#
+# Summary:
+# - Triggers: `push` and `pull_request` targeting `main`/`master`.
+# - Fast safety check: secret scanning with Gitleaks.
+# - Installs `pnpm` and Node.js (Node 20), caches the pnpm store to
+#   speed up installs in CI, then runs lint, build, test and Knip.
+#
+# Notes for contributors:
+# - CI uses `pnpm` and the `pnpm-lock.yaml` hash for cache keys; changing
+#   dependencies or the lockfile will invalidate the cache automatically.
+# - Knip is run but does not fail the workflow (`|| true`) — it's informational.
+# - To reproduce CI locally: run `pnpm install --frozen-lockfile`, then
+#   `pnpm run lint`, `pnpm run build`, and `pnpm test`.
+
 name: CI
 
 on:
@@ -10,11 +25,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Checkout repository: fetch source code and full git history for the run.
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # Secret Scanning: run Gitleaks to detect accidentally committed secrets.
+      # This step fails the job if secrets are found.
       - name: Secret Scanning
         uses: gitleaks/gitleaks-action@v2
         env:
@@ -22,17 +40,21 @@ jobs:
           GITLEAKS_CONFIG: .gitleaks.toml
           GITLEAKS_ENABLE_COMMENTS: false
 
+      # Install pnpm: ensure a specific pnpm version is available for installs.
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 10.5.2
 
+      # Set up Node.js: install Node 20 and enable cache integration for package manager.
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
 
+      # Cache pnpm store: persist pnpm caches (tarballs, metadata) across runs.
+      # Keyed by `pnpm-lock.yaml` so it's invalidated when dependencies change.
       - name: Cache pnpm store
         uses: actions/cache@v4
         with:
@@ -43,18 +65,23 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
+ 
+      # Install dependencies: deterministic install using the lockfile.
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Lint: run ESLint and repository linting scripts to catch code issues early.
       - name: Lint
         run: pnpm run lint
 
+      # Build: produce production builds for apps/packages (output goes to dist/).
       - name: Build
         run: pnpm run build
 
+      # Test: run unit/integration tests configured for the monorepo.
       - name: Test
         run: pnpm test
 
+      # Knip (Unused Code Analysis): detect unused files/exports; non-blocking.
       - name: Knip (Unused Code Analysis)
         run: pnpm run knip || true # Don't fail CI on Knip findings

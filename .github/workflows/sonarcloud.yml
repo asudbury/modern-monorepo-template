@@ -1,3 +1,9 @@
+# SonarCloud workflow
+# Purpose: run SonarCloud static analysis for code quality and security.
+# Triggered by pushes to `main`, selected PR events, or manually via `workflow_dispatch`.
+# The job runs only when `RUN_SONARCLOUD` is enabled (repo var) or the manual
+# input `run_sonarcloud` is true, and when `SONAR_TOKEN` is present in secrets.
+
 name: SonarCloud
 
 on:
@@ -15,31 +21,34 @@ on:
 
 jobs:
   sonar:
-    # Only run if RUN_SONARCLOUD is explicitly set to 'true' OR
-    # the workflow_dispatch input `run_sonarcloud` is true,
-    # and SONAR_TOKEN is present. For forks set vars and secrets accordingly.
+    # Conditional: run only when explicitly enabled and token available.
     if: >-
       (vars.RUN_SONARCLOUD == 'true' || github.event.inputs.run_sonarcloud == true) && secrets.SONAR_TOKEN != ''
     name: SonarCloud Scan
     runs-on: ubuntu-latest
     steps:
+      # Checkout: get source and git metadata for analysis.
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Setup Node.js: SonarCloud scanner may rely on Node tooling; enable pnpm cache.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
 
+      # Enable Corepack and prepare pnpm: ensure consistent pnpm across runners.
       - name: Enable Corepack and prepare pnpm
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
 
+      # Install dependencies: deterministic install using the lockfile.
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Run SonarCloud scan: uploads analysis to SonarCloud using provided token.
       - name: Run SonarCloud scan
         uses: sonarsource/sonarcloud-github-action@v2
         with:
