@@ -1,6 +1,6 @@
 # SonarCloud workflow
 # Purpose: run SonarCloud static analysis for code quality and security.
-# Triggered by pushes to `main`, selected PR events, or manually via `workflow_dispatch`.
+# Triggered by pushes to `main` or `master`, selected PR events, or manually via `workflow_dispatch`.
 # The job runs only when `RUN_SONARCLOUD` is enabled (repo var) or the manual
 # input `run_sonarcloud` is true, and when `SONAR_TOKEN` is present in secrets.
 
@@ -8,7 +8,7 @@ name: SonarCloud
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
