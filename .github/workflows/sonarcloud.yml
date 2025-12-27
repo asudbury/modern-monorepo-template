@@ -77,7 +77,7 @@ jobs:
             echo "has_token=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: "Skip SonarCloud: missing SONAR_TOKEN"
+      - name: 'Skip SonarCloud: missing SONAR_TOKEN'
         if: steps.check-sonar-token.outputs.has_token == 'false'
         run: |
           echo "Skipping SonarCloud CI scan because SONAR_TOKEN is not configured in repository secrets."
