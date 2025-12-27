@@ -77,11 +77,9 @@ jobs:
           # Pass the token through from the job env
           SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
         with:
-          organization: ${{ vars.SONAR_ORGANIZATION }}
-          token: ${{ env.SONAR_TOKEN }}
           args: >
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
-            -Dsonar.sources=src
+            -Dsonar.sources=apps,packages
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.verbose=true
