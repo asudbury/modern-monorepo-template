@@ -37,16 +37,18 @@ A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, 
 - 🪝 [Husky](https://typicode.github.io/husky/) pre-commit + commit-msg hooks
 - 🧹 [Knip](https://knip.dev/) unused code & dependency analysis (non-blocking, see CI)
 - 📦 [Lerna](https://lerna.js.org/) for independent versioning
-- 💅 [Prettier](https://prettier.io/) code formatting (shared config)
-- 🎭 [Playwright](https://playwright.dev/) for E2E browser testing
 - 🛣️ Path aliases across packages
-- 🧩 Shared UI and utils packages
-- 🟦 [TypeScript 5](https://www.typescriptlang.org/docs/) everywhere (strict mode)
-- ⚡ [Turborepo](https://turbo.build/) + [Turbopack](https://turbo.build/pack/docs) for fast builds
-- 🧪 [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for unit tests
+- 🎭 [Playwright](https://playwright.dev/) for E2E browser testing
+- 💅 [Prettier](https://prettier.io/) code formatting (shared config)
+testing-library.com/docs/react-testing-library/intro/) for unit tests
 - ✨ [React 19](https://react.dev/) with the latest features
+- 🧩 Shared UI and utils packages
 - 🔄 [TanStack Query](https://tanstack.com/query/latest) for server state management
 - 🧭 [TanStack Router](https://tanstack.com/router) for type-safe routing
+- 🟦 [TypeScript 5](https://www.typescriptlang.org/docs/) everywhere (strict mode)
+- ⚡ [Turborepo](https://turbo.build/) + [Turbopack](https://turbo.build/pack/docs) for fast builds
+- ⚡ [Vite 7](https://vite.dev/) — Fast dev server and production build (used for local development, HMR, and building `dist/`)
+- 🧪 [Vitest](https://vitest.dev/) + [React Testing Library](https://
 - 🧑‍⚖️ [Zod](https://zod.dev/) for data validation
 - 🚫 404 Not Found Page accessible, customizable fallback for unmatched routes
 
