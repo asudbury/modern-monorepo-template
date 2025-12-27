@@ -43,13 +43,6 @@ jobs:
         with:
           show-env: 'false'
 
-      # Setup Node.js: SonarCloud scanner may rely on Node tooling; enable pnpm cache.
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
       # Ensure pnpm is installed and available on PATH (reliable across runners)
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -61,6 +54,13 @@ jobs:
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
+
+      # Setup Node.js: SonarCloud scanner may rely on Node tooling; enable pnpm cache.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
 
       # Install dependencies: deterministic install using the lockfile.
       - name: Install dependencies
