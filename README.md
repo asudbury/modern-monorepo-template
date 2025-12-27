@@ -417,13 +417,13 @@ This repository's GitHub Actions workflows cache npm and build artifacts to
 speed CI runs. Common ways to inspect and control caches:
 
 - Inspect Actions job logs for cache messages like `Cache restored from key:`
-   (cache hit) or `Cache not found for input key:` (cache miss).
+  (cache hit) or `Cache not found for input key:` (cache miss).
 - To force-refresh caches, update `package-lock.json` (recommended) so
-   lockfile-based cache keys change, or temporarily change the workflow
-   cache key (not recommended long-term).
+  lockfile-based cache keys change, or temporarily change the workflow
+  cache key (not recommended long-term).
 - Example cache keys used in workflows:
-   - npm cache: `${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}`
-   - Vite cache: `${{ runner.os }}-vite-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/vite.config.ts') }}`
+  - npm cache: `${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}`
+  - Vite cache: `${{ runner.os }}-vite-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/vite.config.ts') }}`
 
 If you want help verifying a cache hit/miss on a recent Actions run, tell me
 which run and I can point to the relevant log lines.
