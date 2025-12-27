@@ -62,7 +62,6 @@ jobs:
           corepack enable
           corepack prepare pnpm@latest --activate
 
-
       # Install dependencies: deterministic install using the lockfile.
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
