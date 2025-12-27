@@ -30,7 +30,7 @@ jobs:
         with:
           languages: javascript
 
-      # Debug info 
+      # Debug info
       - name: Debug Info
         uses: ./.github/actions/debug-info
         with:
