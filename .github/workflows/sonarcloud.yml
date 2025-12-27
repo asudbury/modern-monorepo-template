@@ -21,9 +21,11 @@ on:
 
 jobs:
   sonar:
-    # Conditional: run only when explicitly enabled and token available.
+    # Conditional: run when explicitly enabled via repo var or the manual input.
+    # We avoid referencing `secrets` in a job-level `if` expression to prevent
+    # evaluation issues in some runners — the Sonar step itself checks the token.
     if: >-
-      (vars.RUN_SONARCLOUD == 'true' || github.event.inputs.run_sonarcloud == true) && secrets.SONAR_TOKEN != ''
+      (vars.RUN_SONARCLOUD == 'true' || github.event.inputs.run_sonarcloud == true)
     name: SonarCloud Scan
     runs-on: ubuntu-latest
     steps:
@@ -50,6 +52,7 @@ jobs:
 
       # Run SonarCloud scan: uploads analysis to SonarCloud using provided token.
       - name: Run SonarCloud scan
+        if: ${{ secrets.SONAR_TOKEN != '' }}
         uses: sonarsource/sonarcloud-github-action@v2
         with:
           organization: ${{ secrets.SONAR_ORGANIZATION }}
