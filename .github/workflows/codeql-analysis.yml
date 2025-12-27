@@ -32,17 +32,18 @@ jobs:
 
       # Initialize CodeQL: configure languages and packs to run.
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
-          languages: javascript
+          # Languages covered by this project. Add languages here if needed.
+          languages: javascript,typescript
 
       # Autobuild: attempt to build the repository so CodeQL can analyze
       # compiled outputs and dependency graphs. Replace with explicit
       # build steps if your project requires custom build steps.
       - name: Autobuild
-        uses: github/codeql-action/autobuild@v2
+        uses: github/codeql-action/autobuild@v3
 
       # Perform CodeQL Analysis: run the analysis and upload results to
       # GitHub Code Scanning (Security tab) for review by maintainers.
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
