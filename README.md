@@ -40,7 +40,7 @@ A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, 
 - 🛣️ Path aliases across packages
 - 🎭 [Playwright](https://playwright.dev/) for E2E browser testing
 - 💅 [Prettier](https://prettier.io/) code formatting (shared config)
-testing-library.com/docs/react-testing-library/intro/) for unit tests
+  testing-library.com/docs/react-testing-library/intro/) for unit tests
 - ✨ [React 19](https://react.dev/) with the latest features
 - 🧩 Shared UI and utils packages
 - 🔄 [TanStack Query](https://tanstack.com/query/latest) for server state management
