@@ -20,15 +20,15 @@ jobs:
       actions: read
       security-events: write
     steps:
+      # Checkout repository: provide source code and Git metadata for analysis.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       # Debug info - can be removed if not required
       - name: Debug Info
         uses: ./.github/actions/debug-info
         with:
           show-env: 'false'
-
-      # Checkout repository: provide source code and Git metadata for analysis.
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
       # Initialize CodeQL: configure languages and packs to run.
       - name: Initialize CodeQL

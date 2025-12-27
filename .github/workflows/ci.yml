@@ -25,17 +25,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Debug info - can be removed if not required
-      - name: Debug Info
-        uses: ./.github/actions/debug-info
-        with:
-          show-env: 'false'
-
       # Checkout repository: fetch source code and full git history for the run.
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # Debug info - can be removed if not required
+      - name: Debug Info
+        uses: ./.github/actions/debug-info
+        with:
+          show-env: 'false'
 
       # Secret Scanning: run Gitleaks to detect accidentally committed secrets.
       # This step fails the job if secrets are found.
