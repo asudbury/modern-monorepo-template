@@ -28,6 +28,10 @@ jobs:
       (vars.RUN_SONARCLOUD == 'true' || github.event.inputs.run_sonarcloud == true)
     name: SonarCloud Scan
     runs-on: ubuntu-latest
+    env:
+      # Expose SONAR_TOKEN via job env (populated from secrets). Guard Sonar step with env check.
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       # Checkout: get source and git metadata for analysis.
       - name: Checkout
@@ -51,9 +55,21 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       # Run SonarCloud scan: uploads analysis to SonarCloud using provided token.
-      - name: Run SonarCloud scan
-        if: ${{ secrets.SONAR_TOKEN != '' }}
+      - name: SonarCloud Scan
+        # The SonarCloud action requires a valid token. Use a step-level env guard
+        # so we don't reference `secrets` in job-level expressions.
+        if: env.SONAR_TOKEN != ''
         uses: sonarsource/sonarcloud-github-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Pass the token through from the job env
+          SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
         with:
-          organization: ${{ secrets.SONAR_ORGANIZATION }}
-          token: ${{ secrets.SONAR_TOKEN }}
+          organization: ${{ vars.SONAR_ORGANIZATION }}
+          token: ${{ env.SONAR_TOKEN }}
+          args: >
+            -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
+            -Dsonar.sources=src
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.verbose=true
