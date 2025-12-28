@@ -2,6 +2,9 @@
 # Purpose: run CodeQL code scanning for the repository on push/PR and weekly.
 # Triggers: `push` and `pull_request` to `main`/`master`, plus a weekly cron run.
 
+# Note: CodeQL runs in a dedicated workflow to isolate heavy analysis,
+# maintain separate scheduling/permissions, and reduce impact on regular CI.
+
 name: CodeQL
 
 on:
