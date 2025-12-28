@@ -2,6 +2,10 @@
 
 A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, powered by pnpm, Turborepo, and Lerna. Strict on accessibility, performance, and code quality.
 
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=asudbury_modern-monorepo-template)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=asudbury_modern-monorepo-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=asudbury_modern-monorepo-template)
+
 [![CodeQL](https://github.com/asudbury/modern-monorepo-template/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/asudbury/modern-monorepo-template/actions/workflows/codeql-analysis.yml)
 
 ## 📚 DeepWiki Project Knowledge Base
