@@ -88,6 +88,7 @@ jobs:
       - name: Test
         run: pnpm test
 
-      # Knip (Unused Code Analysis): detect unused files/exports; non-blocking.
+      # Knip: static analysis tool to find unused code and dependencies
+      # Output is uploaded to help maintainers clean up the codebase.
       - name: Knip (Unused Code Analysis)
-        run: pnpm run knip || true # Don't fail CI on Knip findings
+        run: pnpm run knip || true # Always succeed
