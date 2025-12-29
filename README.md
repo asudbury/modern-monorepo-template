@@ -416,7 +416,6 @@ Example: `feat: add user authentication`
 - **CodeQL:** [.github/workflows/codeql.yml](.github/workflows/codeql.yml) — runs GitHub CodeQL code scanning on push, PRs, and a weekly schedule.
 - **SonarCloud:** [.github/workflows/sonarcloud.yml](.github/workflows/sonarcloud.yml) — optional SonarCloud static analysis; requires `SONAR_TOKEN` in repository secrets.
 
-
 The CI pipeline runs on every push and pull request:
 
 1. **Lint** - ESLint checks
