@@ -1,11 +1,13 @@
-# Modern Monorepo Template
+<img src="./public/hero-image.png" >
+
+# <img src="./public/react-gears.svg" alt="React gears illustration" width="48" style="vertical-align: middle;" /> Modern Monorepo Template
 
 A modern, accessibility-first monorepo for React 19, Node.js, and TypeScript 5, powered by pnpm, Turborepo, and Lerna. Strict on accessibility, performance, and code quality.
 
 [![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=asudbury_modern-monorepo-template)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=asudbury_modern-monorepo-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=asudbury_modern-monorepo-template)
-[![CI](https://github.com/asudbury/modern-monorepo-template/actions/workflows/ci.yml/badge.svg)](https://github.com/asudbury/modern-monorepo-template/actions/workflows/ci.yml) [![CodeQL](https://github.com/asudbury/modern-monorepo-template/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/asudbury/modern-monorepo-template/actions/workflows/codeql-analysis.yml)
+[![CI](https://github.com/asudbury/modern-monorepo-template/actions/workflows/ci.yml/badge.svg)](https://github.com/asudbury/modern-monorepo-template/actions/workflows/ci.yml) [![CodeQL](https://github.com/asudbury/modern-monorepo-template/actions/workflows/codeql.yml/badge.svg)](https://github.com/asudbury/modern-monorepo-template/actions/workflows/codeql.yml)
 
 ## 📚 DeepWiki Project Knowledge Base
 
@@ -407,6 +409,13 @@ Example: `feat: add user authentication`
 ---
 
 ## CI/CD Pipeline
+
+**Workflows:**
+
+- **CI:** [.github/workflows/ci.yml](.github/workflows/ci.yml) — runs lint, build, test and secret scanning (Gitleaks) on push and pull requests.
+- **CodeQL:** [.github/workflows/codeql.yml](.github/workflows/codeql.yml) — runs GitHub CodeQL code scanning on push, PRs, and a weekly schedule.
+- **SonarCloud:** [.github/workflows/sonarcloud.yml](.github/workflows/sonarcloud.yml) — optional SonarCloud static analysis; requires `SONAR_TOKEN` in repository secrets.
+
 
 The CI pipeline runs on every push and pull request:
 
