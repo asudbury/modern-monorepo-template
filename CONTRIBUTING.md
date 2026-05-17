@@ -38,7 +38,12 @@ This project follows a code of conduct to ensure a welcoming environment for all
    ```bash
    pnpm install
    ```
-4. Install Gitleaks for secret scanning:
+4. Run trusted repository setup scripts manually:
+   ```bash
+   pnpm run prepare
+   ```
+   This repository sets `ignore-scripts=true` in the root `.npmrc`, so install hooks such as Husky setup do not run automatically during `pnpm install`.
+5. Install Gitleaks for secret scanning:
 
    ```bash
    # macOS
@@ -55,7 +60,7 @@ This project follows a code of conduct to ensure a welcoming environment for all
 
    > **Note**: For additional security, verify checksums from the [releases page](https://github.com/gitleaks/gitleaks/releases).
 
-5. Create a branch for your changes:
+6. Create a branch for your changes:
    ```bash
    git checkout -b feature/your-feature-name
    ```

@@ -127,6 +127,20 @@ Before you begin, ensure you have the following installed:
   npm install -g pnpm@10.5.2
   ```
 
+### Package Manager Policy
+
+The repository-level [.npmrc](.npmrc) enforces a stricter pnpm install policy for the whole workspace:
+
+- `min-release-age=7` delays installs of newly published packages for 7 days to reduce supply-chain exposure.
+- `ignore-scripts=true` blocks dependency lifecycle scripts during install, which prevents untrusted `postinstall` and `prepare` hooks from running automatically.
+
+Because install scripts are disabled, run trusted repository scripts explicitly when needed:
+
+```bash
+pnpm install
+pnpm run prepare
+```
+
 ---
 
 ## Quick Start
